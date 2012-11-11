@@ -13,29 +13,31 @@ Samples and examples are available in the `samples/` folder. Please push your ow
 
 A new `Resumable` object is created with information of what and where to post:
 
-    var r = new Resumable({
-      target:'/api/photo/redeem-upload-token', 
-      query:{upload_token:'my_token'}
-    });
-    // Resumable.js isn't supported, fall back on a different method
-    if(!r.support) location.href = '/some-old-crappy-uploader';
-  
-To allow files to be either selected and drag-dropped, you'll assign drop target and a DOM item to be clicked for browsing:
+```javascript
+var r = new Resumable({
+  target:'/api/photo/redeem-upload-token', 
+  query:{upload_token:'my_token'}
+});
+// Resumable.js isn't supported, fall back on a different method
+if(!r.support) location.href = '/some-old-crappy-uploader';
 
-    r.assignBrowse(document.getElementById('browseButton'));
-    r.assignDrop(document.getElementById('dropTarget'));
+// To allow files to be either selected and drag-dropped, you'll assign drop target and a DOM item to be clicked for browsing:
 
-After this, interaction with Resumable.js is done by listening to events:
+r.assignBrowse(document.getElementById('browseButton'));
+r.assignDrop(document.getElementById('dropTarget'));
 
-    r.on('fileAdded', function(file){
-        ...
-      });
-    r.on('fileSuccess', function(file,message){
-        ...
-      });
-    r.on('fileError', function(file, message){
-        ...
-      });
+// After this, interaction with Resumable.js is done by listening to events:
+
+r.on('fileAdded', function(file){
+  // ...
+});
+r.on('fileSuccess', function(file,message){
+  // ...
+});
+r.on('fileError', function(file, message){
+  // ...
+});
+```
 
 ### How do I set it up with my server?
 
